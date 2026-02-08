@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonGame", "DungeonGame\DungeonGame.csproj", "{204ECFE6-40C0-4167-AC6F-22AE4C059A6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{DC6C550E-4A26-443F-8287-797379B73B52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{B8245BF9-D70C-4303-9218-AF31D5810BD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{204ECFE6-40C0-4167-AC6F-22AE4C059A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{204ECFE6-40C0-4167-AC6F-22AE4C059A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{204ECFE6-40C0-4167-AC6F-22AE4C059A6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC6C550E-4A26-443F-8287-797379B73B52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC6C550E-4A26-443F-8287-797379B73B52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC6C550E-4A26-443F-8287-797379B73B52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC6C550E-4A26-443F-8287-797379B73B52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8245BF9-D70C-4303-9218-AF31D5810BD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8245BF9-D70C-4303-9218-AF31D5810BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8245BF9-D70C-4303-9218-AF31D5810BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8245BF9-D70C-4303-9218-AF31D5810BD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
