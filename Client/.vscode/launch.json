@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
       {
-        "name": "C#: DungeonGame Debug",
+        "name": "C#: Client Debug",
         "type": "dotnet",
         "request": "launch",
-        "projectPath": "${workspaceFolder}/DungeonGame.csproj"
+        "projectPath": "${workspaceFolder}/Client.csproj"
       }
     ],
   }
