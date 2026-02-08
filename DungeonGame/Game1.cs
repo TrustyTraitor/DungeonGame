@@ -6,6 +6,8 @@ namespace DungeonGame;
 
 public class Game1 : Game
 {
+    private Texture2D ballTexture;
+    
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
@@ -26,6 +28,8 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
+        
+        ballTexture = Content.Load<Texture2D>("Characters/ball");
 
         // TODO: use this.Content to load your game content here
     }
@@ -47,6 +51,10 @@ public class Game1 : Game
 
         // TODO: Add your drawing code here
 
+        _spriteBatch.Begin();
+        _spriteBatch.Draw(ballTexture, new Vector2(0, 0), Color.White);
+        _spriteBatch.End();
+        
         base.Draw(gameTime);
     }
 }
