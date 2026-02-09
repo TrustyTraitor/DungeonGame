@@ -29,4 +29,7 @@
         <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*"/>
         <PackageReference Include="RiptideNetworking.Riptide" Version="2.2.1" />
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Core\Core.csproj" />
+    </ItemGroup>
 </Project>
