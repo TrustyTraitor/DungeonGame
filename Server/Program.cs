@@ -1,2 +1,3 @@
-﻿using var game = new Server.Game1();
-game.Run();
+﻿// See https://aka.ms/new-console-template for more information
+
+Console.WriteLine("Hello, World!");
