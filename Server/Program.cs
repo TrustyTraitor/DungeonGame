@@ -1,52 +1,43 @@
-﻿using Arch.Bus;
+﻿using System.Text.RegularExpressions;
+using Arch.Buffer;
+using Arch.Bus;
 using Arch.Core;
 using Arch.Core.Extensions;
+using Arch.System;
 using Core.Components;
+using Core.Systems;
 
 namespace Server;
 
-public ref struct ShootEvent
-{
-    public ref Entity attacker;
-    public ref Entity victim;
-
-    public int amount;
-}
-
-public static class EventBusTest
-{
-    [Event]
-    public static void OnShootEvent(ref ShootEvent @event)
-    {
-        if (!@event.victim.Has<Health>()) return;
-        
-        ref Health health = ref @event.victim.Get<Health>();
-        health.Value = health.Value - @event.amount;
-    }
-}
 
 public static class Program
 {
+    
     public static void Main(String[] args)
     {
+        //TODO: This needs to actually be calculated each loop.
+        float deltaTime = 0.1f;
+        
         var world = World.Create();
-
-        var player = world.Create(new Health(10,10,0));
-        var enemy = world.Create(new Health(10,10,0));
+        var _systems = new Group<float>( "mainSystems",
+            new HealthSystem(world)
+            );
+        _systems.Initialize();
         
-        Console.Out.WriteLine($"Player ({player.Id}) Health: {player.Get<Health>().Value}");
-        Console.Out.WriteLine($"Enemy ({enemy.Id}) Health: {enemy.Get<Health>().Value}");
-        
-        var shootEvent = new ShootEvent
+        //TODO: Create a separate thread that handles commands such as closing the server
+        while (true)
         {
-            attacker=ref player, 
-            victim=ref enemy, 
-            amount=5
-        };
-        EventBus.Send(ref shootEvent);
-        Console.Out.WriteLine("I've shot you!");
+            
+            _systems.BeforeUpdate(in deltaTime);    // Calls .BeforeUpdate on all systems ( can be overriden )
+            _systems.Update(in deltaTime);          // Calls .Update on all systems ( can be overriden )
+            _systems.AfterUpdate(in deltaTime);     // Calls .AfterUpdate on all System ( can be overriden )
+            
+            world.TrimExcess();          // Frees unused memory
+        }
         
-        Console.Out.WriteLine($"Player ({player.Id}) Health: {player.Get<Health>().Value}");
-        Console.Out.WriteLine($"Enemy ({enemy.Id}) Health: {enemy.Get<Health>().Value}");
+        _systems.Dispose();
+        world.Dispose();             // Clearing the world like God in the First Testament
+        World.Destroy(world);   
+        
     }
 }
