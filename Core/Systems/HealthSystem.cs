@@ -25,7 +25,7 @@ public partial class HealthSystem : BaseSystem<World, float>
 
     [Query]
     [All<Health, HealthChanged>]
-    public void HealthDisplaySystem(Entity entity, ref Health health)
+    private void HealthDisplaySystem(Entity entity, ref Health health)
     {
         _commandBuffer?.Remove<HealthChanged>(entity);
         Console.WriteLine(health.Value);
