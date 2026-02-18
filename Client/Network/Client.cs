@@ -1,6 +1,20 @@
+using Riptide;
+
 namespace Client.Network;
 
-public class Client
+// TODO: Rework this so it isn't composed but inherited... probably. idk gotta think about it
+public class Client : Riptide.Client
 {
-    private readonly Riptide.Client _client;
+    ~Client()
+    {
+        this.Disconnect();
+    }
+    
+    public void SyncEntityState(byte[] entityBytes)
+    {
+        var message = Message.Create(MessageSendMode.Unreliable);
+        message.AddBytes(entityBytes);
+        
+        this.Send(message);
+    }
 }

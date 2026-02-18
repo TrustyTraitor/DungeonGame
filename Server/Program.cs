@@ -4,6 +4,7 @@ public static class Program
 {
     public static void Main(String[] args)
     {
+        // TODO: Get these from a config file instead of hard coding
         ushort port = 26769;
         ushort maxClients = 16;
         var server = new Network.Server(port, maxClients);

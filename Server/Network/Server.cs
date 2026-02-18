@@ -3,26 +3,21 @@ using Riptide.Utils;
 
 namespace Server.Network;
 
-public partial class Server
+
+// TODO: Rework this so it isn't composed but inherited... probably. idk gotta think about it
+public partial class Server : Riptide.Server
 {
-    private readonly Riptide.Server _server;
     
-    public Server(ushort port, ushort maxClients)
+    public Server(ushort port, ushort maxClients) :  base()
     {
         RiptideLogger.Initialize(Console.WriteLine, true);
         
-        _server = new Riptide.Server();
-        _server.Start(port, maxClients);
+        this.Start(port, maxClients);
     }
     
     ~Server()
     {
-        _server.Stop();
-    }
-    
-    public void Update()
-    {
-        _server.Update();
+        this.Stop();
     }
 
     // TODO: Benchmark if this method of syncing clients is fast enough. I hope so...
@@ -31,6 +26,6 @@ public partial class Server
         var message = Message.Create(MessageSendMode.Unreliable);
         message.AddBytes(worldBytes);
         
-        _server.SendToAll(message);
+        this.SendToAll(message);
     }
 }

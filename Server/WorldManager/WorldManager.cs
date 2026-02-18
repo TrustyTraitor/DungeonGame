@@ -1,3 +1,4 @@
+using Arch.Buffer;
 using Arch.Core;
 using Arch.Persistence;
 using Arch.System;
@@ -11,10 +12,12 @@ public sealed partial class WorldManager
     private readonly World _world;
 
     private ArchBinarySerializer _serializer;
+    private CommandBuffer _commandBuffer;
 
     public WorldManager()
     {
         _serializer = new ArchBinarySerializer();
+        _commandBuffer = new CommandBuffer();
         
         _world = World.Create();
         _systems = new Group<float>( "WorldSystems",
@@ -26,6 +29,9 @@ public sealed partial class WorldManager
 
     ~WorldManager()
     {
+        SaveGameBeforeShutdown();
+        
+        // TODO: Should these happen in the previous function?
         _systems.Dispose();
         _world.Dispose();
         World.Destroy(_world);
